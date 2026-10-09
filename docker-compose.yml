@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  travel-english:
+    image: jaewooo/travel-english:latest
+    container_name: travel-english
+    ports:
+      - "8000:8000"
+    volumes:
+      # 시놀로지 NAS 공유 폴더 마운트 설정
+      # 왼쪽 경로(./data)를 NAS 호스트의 특정 폴더(예: /volume1/docker/travel-english/data)로 변경 가능합니다.
+      - ./data:/app/data
+    environment:
+      - TZ=Asia/Seoul
+      - DB_DIR=/app/data
+    restart: unless-stopped
